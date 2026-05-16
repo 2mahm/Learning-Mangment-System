@@ -1,0 +1,338 @@
+{
+  "common": {
+    "signOut": "Sign Out",
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "noData": "No data available",
+    "error": "An error occurred. Please try again.",
+    "markAllRead": "Mark all read",
+    "notifications": "Notifications",
+    "noNotifications": "No notifications",
+    "seeAll": "See all notifications →",
+    "justNow": "just now",
+    "minutesAgo": "{{n}}m ago",
+    "hoursAgo": "{{n}}h ago",
+    "daysAgo": "{{n}}d ago",
+    "langToggle": "عربي"
+  },
+  "nav": {
+    "management": "Management",
+    "myAccount": "My Account",
+    "teaching": "Teaching",
+    "centers": "Centers",
+    "grades": "Grades",
+    "invitations": "Invitations",
+    "registrationRequests": "Registration Requests",
+    "users": "Users",
+    "studentRequests": "Student Requests",
+    "myStudents": "My Students",
+    "performance": "Performance",
+    "progress": "Progress",
+    "attendance": "Attendance",
+    "dashboard": "Dashboard",
+    "subjectGroups": "Subject Groups",
+    "quran": "Quran",
+    "myProfile": "My Profile",
+    "roleLabelAdmin": "Administrator",
+    "roleLabelCenterAdmin": "Center Admin",
+    "roleLabelParent": "Parent",
+    "roleLabelTeacher": "Teacher"
+  },
+  "login": {
+    "welcomeBack": "Welcome back",
+    "staffParentTab": "Staff / Parent Login",
+    "studentTab": "Student Login",
+    "signInWithEmail": "Sign in with your email",
+    "signInWithUsername": "Sign in with your student username",
+    "emailAddress": "Email address",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "username": "Username",
+    "usernamePlaceholder": "your.username",
+    "signIn": "Sign In",
+    "signingIn": "Signing in…",
+    "signInAsStudent": "Sign In as Student",
+    "invalidCredentials": "Invalid email or password.",
+    "invalidStudentCredentials": "Invalid username or password."
+  },
+  "noAccess": {
+    "title": "No pages available",
+    "subtitle": "Ask an administrator to assign at least one page permission to your account.",
+    "permissionMap": "Permission → Page map",
+    "yourPermissions": "Your current permissions",
+    "assigned": "{{n}} assigned",
+    "noPermissions": "No permissions assigned.",
+    "granted": "✓ granted",
+    "missing": "✗ missing",
+    "refreshPermissions": "Refresh Permissions",
+    "refreshing": "Refreshing…",
+    "permRefreshed": "Permissions refreshed! Redirecting…",
+    "permRefreshFailed": "Could not reach the server. Please log out and back in."
+  },
+  "admin": {
+    "centers": {
+      "title": "Centers",
+      "subtitle": "Manage learning centers",
+      "name": "Name",
+      "city": "City",
+      "state": "State",
+      "country": "Country",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive",
+      "addCenter": "Add Center",
+      "editCenter": "Edit Center",
+      "deleteCenter": "Delete Center",
+      "confirmDelete": "Are you sure you want to delete this center?"
+    },
+    "grades": {
+      "title": "Grades",
+      "subtitle": "Manage grade levels",
+      "gradeName": "Grade Name",
+      "center": "Center",
+      "sortOrder": "Sort Order",
+      "addGrade": "Add Grade",
+      "editGrade": "Edit Grade",
+      "filterByCenter": "Filter by center"
+    },
+    "invitations": {
+      "title": "Invitations",
+      "subtitle": "Invite staff and parents",
+      "role": "Role",
+      "email": "Email",
+      "expiresAt": "Expires At",
+      "createInvitation": "Create Invitation",
+      "copyLink": "Copy Link",
+      "copied": "Copied!",
+      "permissions": "Permissions"
+    },
+    "registrationRequests": {
+      "title": "Registration Requests",
+      "subtitle": "Review and approve user registrations",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "approve": "Approve",
+      "reject": "Reject"
+    },
+    "users": {
+      "title": "Users",
+      "subtitle": "Manage all registered users and their permissions.",
+      "totalUsers": "Total Users",
+      "teachers": "Teachers",
+      "parents": "Parents",
+      "centerAdmins": "Center Admins",
+      "activeUsers": "Active Users",
+      "deletedUsers": "Deleted Users",
+      "searchPlaceholder": "Search users…",
+      "allRoles": "All roles",
+      "deleteUser": "Delete User",
+      "confirmDelete": "Are you sure you want to delete {{name}}?"
+    },
+    "userProfile": {
+      "title": "User Profile",
+      "permissions": "Permissions",
+      "savePermissions": "Save Permissions",
+      "resetPassword": "Reset Password"
+    },
+    "studentRequests": {
+      "title": "Student Requests",
+      "subtitle": "Review student enrollment requests",
+      "approve": "Approve",
+      "reject": "Reject",
+      "selectGrade": "Select Grade"
+    }
+  },
+  "teacher": {
+    "dashboard": {
+      "welcomeBack": "Welcome back, {{name}}",
+      "subtitle": "Here's what's happening with your classes today.",
+      "subjectGroups": "Subject Groups",
+      "totalLessons": "Total Lessons",
+      "publishedLessons": "Published Lessons",
+      "draftLessons": "Draft Lessons",
+      "yourGroups": "Your Subject Groups",
+      "newGroup": "New Group",
+      "noGroups": "No subject groups yet",
+      "noGroupsSub": "Create your first group to start building lessons.",
+      "createGroup": "Create Subject Group",
+      "lessons": "lessons",
+      "published": "published"
+    },
+    "subjectGroups": {
+      "title": "Subject Groups",
+      "subtitle": "Manage your subject groups and lessons",
+      "createGroup": "Create Group",
+      "noGroups": "No groups found",
+      "tracks": {
+        "arabic": "Arabic",
+        "quran": "Qur'an",
+        "culture": "Culture"
+      }
+    },
+    "subjectGroupDetail": {
+      "back": "Subject Groups",
+      "lessons": "Lessons",
+      "files": "Files",
+      "students": "Students",
+      "addLesson": "Add Lesson",
+      "uploadFile": "Upload File",
+      "publishLesson": "Publish",
+      "unpublishLesson": "Unpublish",
+      "editLesson": "Edit Lesson",
+      "deleteLesson": "Delete Lesson"
+    },
+    "lessonEditor": {
+      "title": "Lesson Editor",
+      "addSection": "Add Section",
+      "saveSection": "Save",
+      "saving": "Saving…",
+      "saved": "Saved",
+      "directionLTR": "LTR",
+      "directionRTL": "RTL",
+      "sectionTypes": {
+        "title": "Title",
+        "content": "Content",
+        "exercise": "Exercise",
+        "quran_display": "Quran Block"
+      }
+    },
+    "attendance": {
+      "title": "Attendance",
+      "subtitle": "Record and manage class attendance",
+      "takeAttendance": "Take Attendance",
+      "summary": "Summary",
+      "present": "Present",
+      "late": "Late",
+      "absent": "Absent",
+      "excused": "Excused",
+      "saveAttendance": "Save Attendance",
+      "saving": "Saving…",
+      "selectGroup": "Select Group",
+      "selectDate": "Select Date"
+    },
+    "exercisePerformance": {
+      "title": "Exercise Performance",
+      "subtitle": "Review student exercise results"
+    }
+  },
+  "parent": {
+    "students": {
+      "title": "My Students",
+      "subtitle": "Manage your children's login credentials",
+      "username": "Username",
+      "password": "Password",
+      "changePassword": "Change Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "savePassword": "Save Password"
+    },
+    "performance": {
+      "title": "Performance",
+      "subtitle": "View your children's exercise scores",
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "yourAnswer": "Your answer",
+      "correctAnswer": "Correct answer"
+    },
+    "progress": {
+      "title": "Progress",
+      "subtitle": "Track your children's learning progress",
+      "noAttempts": "No attempts"
+    },
+    "attendance": {
+      "title": "Attendance",
+      "subtitle": "View attendance records",
+      "present": "Present",
+      "absent": "Absent",
+      "late": "Late",
+      "excused": "Excused"
+    }
+  },
+  "student": {
+    "dashboard": {
+      "home": "Home",
+      "learn": "Learn",
+      "rewards": "Rewards",
+      "me": "Me"
+    },
+    "portal": {
+      "failedLoad": "Failed to load content.",
+      "failedLoadLessons": "Failed to load lessons."
+    }
+  },
+  "quran": {
+    "title": "Quran Explorer",
+    "subtitle": "Browse ayahs, search by keyword, and practice memorization.",
+    "browse": "Browse",
+    "search": "Search",
+    "memorize": "Memorize",
+    "listen": "Listen",
+    "pause": "Pause",
+    "hideTafsir": "Hide تفسير",
+    "showTafsir": "تفسير",
+    "ayahs": "ayahs",
+    "searchPlaceholder": "اكتب كلمة بالعربية…",
+    "noResults": "No ayahs found for that word. Try a different keyword.",
+    "showing": "Showing {{n}} result",
+    "showingPlural": "Showing {{n}} results",
+    "couldNotLoad": "Could not load this surah. Please try again.",
+    "searchFailed": "Search did not work. Please check your spelling and try again.",
+    "whatComesAfter": "What comes after this ayah?",
+    "question": "Question {{current}} / {{total}}",
+    "difficulty": "Choose difficulty",
+    "juzAmma": "Juz Amma (Beginners)",
+    "chooseSurah": "Choose a Surah",
+    "selectSurah": "Select Surah",
+    "startQuiz": "Start Quiz",
+    "tryAgain": "Try Again",
+    "newQuiz": "New Quiz",
+    "correct": "correct",
+    "perfectScore": "Perfect score! MashaAllah! You know this surah very well! 🌟",
+    "goodScore": "Great work! Keep reviewing and you will memorize it perfectly!",
+    "keepPracticing": "Good effort! Keep practicing. Every step counts in your memorization journey!"
+  },
+  "profile": {
+    "title": "My Profile",
+    "subtitle": "Manage your account information and password.",
+    "name": "Name",
+    "email": "Email",
+    "saveProfile": "Save Profile",
+    "saving": "Saving…",
+    "profileUpdated": "Profile updated successfully.",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "changePassword": "Change Password",
+    "passwordChanged": "Password changed successfully.",
+    "accountInfo": "Account Information",
+    "changePasswordTitle": "Change Password"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Your recent notifications",
+    "markAllRead": "Mark all read",
+    "noNotifications": "No notifications yet",
+    "filterAll": "All",
+    "filterUnread": "Unread"
+  },
+  "register": {
+    "title": "Create Account",
+    "inviteCode": "Invitation Code",
+    "name": "Full Name",
+    "email": "Email Address",
+    "password": "Password",
+    "submit": "Create Account",
+    "creating": "Creating…",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in"
+  }
+}

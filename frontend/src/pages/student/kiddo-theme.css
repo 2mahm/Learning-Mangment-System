@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&family=Cairo:wght@500;600;700;800&display=swap');
+
+:root {
+  --k-bg:           #FFF7E8;
+  --k-surface:      #FFFFFF;
+  --k-ink:          #2B1D47;
+  --k-ink-soft:     #6A5E8A;
+  --k-primary:      #FF8A3D;
+  --k-primary-d:    #F06A1E;
+  --k-accent:       #4CC9F0;
+  --k-pink:         #FF6B9D;
+  --k-green:        #4CD471;
+  --k-yellow:       #FFD23F;
+  --k-violet:       #8B5CF6;
+  --k-red:          #FF5C5C;
+  --k-card-sh:      0 6px 0 rgba(43,29,71,.10), 0 14px 30px rgba(43,29,71,.10);
+  --k-display-font: "Baloo 2", "Cairo", system-ui, sans-serif;
+  --k-body-font:    "Nunito", "Cairo", system-ui, sans-serif;
+}
+
+.kiddo-wrap {
+  background: var(--k-bg);
+  min-height: 100vh;
+  font-family: var(--k-body-font);
+  color: var(--k-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes k-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes k-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(-6deg); }
+  75%      { transform: rotate(6deg); }
+}
+@keyframes k-bounce-in {
+  0%   { transform: scale(.6); opacity: 0; }
+  60%  { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@keyframes k-spin {
+  to { transform: rotate(360deg); }
+}
+
+.k-anim-float        { animation: k-float 3s ease-in-out infinite; }
+.k-anim-wiggle:hover { animation: k-wiggle .5s ease-in-out; }
+.k-anim-bounce       { animation: k-bounce-in .5s cubic-bezier(.2,.9,.3,1.2); }

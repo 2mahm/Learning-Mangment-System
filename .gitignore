@@ -1,0 +1,50 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pycache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+# ── Django ────────────────────────────────────────────────────────────────────
+db.sqlite3
+media/
+staticfiles/
+*.log
+# ── Migrations ────────────────────────────────────────────────────────────────
+*/migrations/*.py
+!*/migrations/__init__.py
+*/migrations/*.pyc
+
+# ── Migrations ────────────────────────────────────────────────────────────────
+*/migrations/*.py
+!*/migrations/__init__.py
+*/migrations/*.pyc
+
+# ── Environment ───────────────────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+venv/
+.venv/
+env/
+.env/
+
+# ── Docker ────────────────────────────────────────────────────────────────────
+# (compose files are intentionally tracked)
+
+# ── IDE & OS ──────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Frontend (handled by frontend/.gitignore but listed here for root tools) ──
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/

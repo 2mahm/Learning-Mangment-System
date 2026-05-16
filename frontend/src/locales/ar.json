@@ -1,0 +1,338 @@
+{
+  "common": {
+    "signOut": "تسجيل الخروج",
+    "loading": "جارٍ التحميل…",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "edit": "تعديل",
+    "create": "إنشاء",
+    "search": "بحث",
+    "close": "إغلاق",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "noData": "لا توجد بيانات",
+    "error": "حدث خطأ. يرجى المحاولة مرة أخرى.",
+    "markAllRead": "تحديد الكل كمقروء",
+    "notifications": "الإشعارات",
+    "noNotifications": "لا توجد إشعارات",
+    "seeAll": "عرض جميع الإشعارات →",
+    "justNow": "الآن",
+    "minutesAgo": "منذ {{n}} د",
+    "hoursAgo": "منذ {{n}} س",
+    "daysAgo": "منذ {{n}} ي",
+    "langToggle": "English"
+  },
+  "nav": {
+    "management": "الإدارة",
+    "myAccount": "حسابي",
+    "teaching": "التدريس",
+    "centers": "المراكز",
+    "grades": "المراحل الدراسية",
+    "invitations": "الدعوات",
+    "registrationRequests": "طلبات التسجيل",
+    "users": "المستخدمون",
+    "studentRequests": "طلبات الطلاب",
+    "myStudents": "أبنائي",
+    "performance": "الأداء",
+    "progress": "التقدم",
+    "attendance": "الحضور",
+    "dashboard": "لوحة التحكم",
+    "subjectGroups": "مجموعات المواد",
+    "quran": "القرآن الكريم",
+    "myProfile": "ملفي الشخصي",
+    "roleLabelAdmin": "مدير النظام",
+    "roleLabelCenterAdmin": "مدير المركز",
+    "roleLabelParent": "ولي الأمر",
+    "roleLabelTeacher": "معلم"
+  },
+  "login": {
+    "welcomeBack": "أهلاً بعودتك",
+    "staffParentTab": "دخول الموظفين وأولياء الأمور",
+    "studentTab": "دخول الطلاب",
+    "signInWithEmail": "سجّل الدخول بالبريد الإلكتروني",
+    "signInWithUsername": "سجّل الدخول باسم المستخدم",
+    "emailAddress": "البريد الإلكتروني",
+    "emailPlaceholder": "you@example.com",
+    "password": "كلمة المرور",
+    "username": "اسم المستخدم",
+    "usernamePlaceholder": "your.username",
+    "signIn": "دخول",
+    "signingIn": "جارٍ الدخول…",
+    "signInAsStudent": "دخول كطالب",
+    "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "invalidStudentCredentials": "اسم المستخدم أو كلمة المرور غير صحيحة."
+  },
+  "noAccess": {
+    "title": "لا توجد صفحات متاحة",
+    "subtitle": "اطلب من المدير منحك صلاحية وصول لصفحة واحدة على الأقل.",
+    "permissionMap": "الصلاحية ← الصفحة",
+    "yourPermissions": "صلاحياتك الحالية",
+    "assigned": "{{n}} مُعيَّنة",
+    "noPermissions": "لا توجد صلاحيات مُعيَّنة.",
+    "granted": "✓ ممنوح",
+    "missing": "✗ مفقود",
+    "refreshPermissions": "تحديث الصلاحيات",
+    "refreshing": "جارٍ التحديث…",
+    "permRefreshed": "تم تحديث الصلاحيات! جارٍ الانتقال…",
+    "permRefreshFailed": "تعذّر الوصول للخادم. يرجى تسجيل الخروج ثم الدخول مجدداً."
+  },
+  "admin": {
+    "centers": {
+      "title": "المراكز",
+      "subtitle": "إدارة مراكز التعلم",
+      "name": "الاسم",
+      "city": "المدينة",
+      "state": "الولاية / المنطقة",
+      "country": "الدولة",
+      "status": "الحالة",
+      "active": "نشط",
+      "inactive": "غير نشط",
+      "addCenter": "إضافة مركز",
+      "editCenter": "تعديل المركز",
+      "deleteCenter": "حذف المركز",
+      "confirmDelete": "هل أنت متأكد من حذف هذا المركز؟"
+    },
+    "grades": {
+      "title": "المراحل الدراسية",
+      "subtitle": "إدارة المراحل الدراسية",
+      "gradeName": "اسم المرحلة",
+      "center": "المركز",
+      "sortOrder": "ترتيب العرض",
+      "addGrade": "إضافة مرحلة",
+      "editGrade": "تعديل المرحلة",
+      "filterByCenter": "تصفية حسب المركز"
+    },
+    "invitations": {
+      "title": "الدعوات",
+      "subtitle": "دعوة الموظفين وأولياء الأمور",
+      "role": "الدور",
+      "email": "البريد الإلكتروني",
+      "expiresAt": "تاريخ الانتهاء",
+      "createInvitation": "إنشاء دعوة",
+      "copyLink": "نسخ الرابط",
+      "copied": "تم النسخ!",
+      "permissions": "الصلاحيات"
+    },
+    "registrationRequests": {
+      "title": "طلبات التسجيل",
+      "subtitle": "مراجعة وقبول طلبات تسجيل المستخدمين",
+      "pending": "قيد المراجعة",
+      "approved": "مقبول",
+      "rejected": "مرفوض",
+      "approve": "قبول",
+      "reject": "رفض"
+    },
+    "users": {
+      "title": "المستخدمون",
+      "subtitle": "إدارة جميع المستخدمين وصلاحياتهم.",
+      "totalUsers": "إجمالي المستخدمين",
+      "teachers": "المعلمون",
+      "parents": "أولياء الأمور",
+      "centerAdmins": "مديرو المراكز",
+      "activeUsers": "نشطون",
+      "deletedUsers": "محذوفون",
+      "searchPlaceholder": "ابحث عن مستخدم…",
+      "allRoles": "جميع الأدوار",
+      "deleteUser": "حذف المستخدم",
+      "confirmDelete": "هل أنت متأكد من حذف {{name}}؟"
+    },
+    "userProfile": {
+      "title": "الملف الشخصي",
+      "permissions": "الصلاحيات",
+      "savePermissions": "حفظ الصلاحيات",
+      "resetPassword": "إعادة تعيين كلمة المرور"
+    },
+    "studentRequests": {
+      "title": "طلبات الطلاب",
+      "subtitle": "مراجعة طلبات الالتحاق",
+      "approve": "قبول",
+      "reject": "رفض",
+      "selectGrade": "اختر المرحلة"
+    }
+  },
+  "teacher": {
+    "dashboard": {
+      "welcomeBack": "أهلاً بعودتك، {{name}}",
+      "subtitle": "إليك ما يحدث في فصولك اليوم.",
+      "subjectGroups": "مجموعات المواد",
+      "totalLessons": "إجمالي الدروس",
+      "publishedLessons": "الدروس المنشورة",
+      "draftLessons": "مسودات الدروس",
+      "yourGroups": "مجموعاتك",
+      "newGroup": "مجموعة جديدة",
+      "noGroups": "لا توجد مجموعات بعد",
+      "noGroupsSub": "أنشئ أول مجموعة لك لتبدأ في بناء الدروس.",
+      "createGroup": "إنشاء مجموعة",
+      "lessons": "دروس",
+      "published": "منشورة"
+    },
+    "subjectGroups": {
+      "title": "مجموعات المواد",
+      "subtitle": "إدارة مجموعاتك ودروسك",
+      "createGroup": "إنشاء مجموعة",
+      "noGroups": "لم يتم العثور على مجموعات",
+      "tracks": {
+        "arabic": "عربي",
+        "quran": "قرآن",
+        "culture": "ثقافة"
+      }
+    },
+    "subjectGroupDetail": {
+      "back": "مجموعات المواد",
+      "lessons": "الدروس",
+      "files": "الملفات",
+      "students": "الطلاب",
+      "addLesson": "إضافة درس",
+      "uploadFile": "رفع ملف",
+      "publishLesson": "نشر",
+      "unpublishLesson": "إلغاء النشر",
+      "editLesson": "تعديل الدرس",
+      "deleteLesson": "حذف الدرس"
+    },
+    "lessonEditor": {
+      "title": "محرر الدروس",
+      "addSection": "إضافة قسم",
+      "saveSection": "حفظ",
+      "saving": "جارٍ الحفظ…",
+      "saved": "تم الحفظ",
+      "directionLTR": "يسار لليمين",
+      "directionRTL": "يمين لليسار",
+      "sectionTypes": {
+        "title": "عنوان",
+        "content": "محتوى",
+        "exercise": "تمرين",
+        "quran_display": "عرض قرآني"
+      }
+    },
+    "attendance": {
+      "title": "الحضور",
+      "subtitle": "تسجيل وإدارة حضور الفصل",
+      "takeAttendance": "تسجيل الحضور",
+      "summary": "ملخص",
+      "present": "حاضر",
+      "late": "متأخر",
+      "absent": "غائب",
+      "excused": "بعذر",
+      "saveAttendance": "حفظ الحضور",
+      "saving": "جارٍ الحفظ…",
+      "selectGroup": "اختر المجموعة",
+      "selectDate": "اختر التاريخ"
+    },
+    "exercisePerformance": {
+      "title": "أداء التمارين",
+      "subtitle": "مراجعة نتائج التمارين"
+    }
+  },
+  "parent": {
+    "students": {
+      "title": "أبنائي",
+      "subtitle": "إدارة بيانات دخول أبنائك",
+      "username": "اسم المستخدم",
+      "password": "كلمة المرور",
+      "changePassword": "تغيير كلمة المرور",
+      "newPassword": "كلمة مرور جديدة",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "savePassword": "حفظ كلمة المرور"
+    },
+    "performance": {
+      "title": "الأداء",
+      "subtitle": "عرض درجات أبنائك في التمارين",
+      "correct": "صحيح",
+      "incorrect": "خطأ",
+      "yourAnswer": "إجابتك",
+      "correctAnswer": "الإجابة الصحيحة"
+    },
+    "progress": {
+      "title": "التقدم",
+      "subtitle": "متابعة تقدم أبنائك في التعلم",
+      "noAttempts": "لا توجد محاولات"
+    },
+    "attendance": {
+      "title": "الحضور",
+      "subtitle": "عرض سجلات الحضور",
+      "present": "حاضر",
+      "absent": "غائب",
+      "late": "متأخر",
+      "excused": "بعذر"
+    }
+  },
+  "student": {
+    "dashboard": {
+      "home": "الرئيسية",
+      "learn": "تعلّم",
+      "rewards": "الجوائز",
+      "me": "أنا"
+    },
+    "portal": {
+      "failedLoad": "فشل تحميل المحتوى.",
+      "failedLoadLessons": "فشل تحميل الدروس."
+    }
+  },
+  "quran": {
+    "title": "مستكشف القرآن",
+    "subtitle": "تصفح الآيات وابحث بالكلمات وتدرّب على الحفظ.",
+    "browse": "تصفح",
+    "search": "بحث",
+    "memorize": "حفظ",
+    "listen": "استمع",
+    "pause": "إيقاف",
+    "hideTafsir": "إخفاء التفسير",
+    "showTafsir": "تفسير",
+    "ayahs": "آية",
+    "searchPlaceholder": "اكتب كلمة بالعربية…",
+    "noResults": "لم يتم العثور على آيات. جرّب كلمة أخرى.",
+    "showing": "{{n}} نتيجة",
+    "showingPlural": "{{n}} نتائج",
+    "couldNotLoad": "تعذّر تحميل هذه السورة. يرجى المحاولة مجدداً.",
+    "searchFailed": "فشل البحث. يرجى التحقق من الإملاء والمحاولة مجدداً.",
+    "whatComesAfter": "ما الذي يأتي بعد هذه الآية؟",
+    "question": "السؤال {{current}} / {{total}}",
+    "difficulty": "اختر مستوى الصعوبة",
+    "juzAmma": "جزء عم (للمبتدئين)",
+    "chooseSurah": "اختر سورة",
+    "selectSurah": "حدد السورة",
+    "startQuiz": "ابدأ الاختبار",
+    "tryAgain": "حاول مجدداً",
+    "newQuiz": "اختبار جديد",
+    "correct": "صحيح",
+    "perfectScore": "درجة مثالية! ما شاء الله! 🌟",
+    "goodScore": "عمل رائع! استمر في المراجعة!",
+    "keepPracticing": "جهد طيب! استمر في التدريب."
+  },
+  "profile": {
+    "title": "ملفي الشخصي",
+    "subtitle": "إدارة معلومات حسابك وكلمة المرور.",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "saveProfile": "حفظ الملف",
+    "saving": "جارٍ الحفظ…",
+    "profileUpdated": "تم تحديث الملف الشخصي بنجاح.",
+    "currentPassword": "كلمة المرور الحالية",
+    "newPassword": "كلمة مرور جديدة",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "changePassword": "تغيير كلمة المرور",
+    "passwordChanged": "تم تغيير كلمة المرور بنجاح.",
+    "accountInfo": "معلومات الحساب",
+    "changePasswordTitle": "تغيير كلمة المرور"
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "subtitle": "إشعاراتك الأخيرة",
+    "markAllRead": "تحديد الكل كمقروء",
+    "noNotifications": "لا توجد إشعارات بعد",
+    "filterAll": "الكل",
+    "filterUnread": "غير مقروء"
+  },
+  "register": {
+    "title": "إنشاء حساب",
+    "inviteCode": "رمز الدعوة",
+    "name": "الاسم الكامل",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "submit": "إنشاء الحساب",
+    "creating": "جارٍ الإنشاء…",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
+    "signIn": "تسجيل الدخول"
+  }
+}

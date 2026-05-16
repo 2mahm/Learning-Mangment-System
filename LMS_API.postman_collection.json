@@ -1,0 +1,450 @@
+{
+  "info": {
+    "name": "LMS – Invitation & Approval System",
+    "description": "Full API collection for the LMS onboarding flow.\n\n## Setup\n1. Import this collection.\n2. Create an environment with two variables:\n   - `base_url` → `http://localhost:8000`\n   - `token` → (leave empty; auto-filled after login)\n3. Run **Login** first — the token is saved automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 – Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var json = pm.response.json();",
+                  "if (json.token) {",
+                  "    pm.collectionVariables.set('token', json.token);",
+                  "    console.log('Token saved:', json.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin@example.com\",\n  \"password\": \"yourpassword\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login", ""]
+            },
+            "description": "Authenticate with email + password.\n\nThe response token is **automatically saved** to the `token` collection variable and used by all other requests."
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"token\": \"9944b09199c62bcf9418ad846dd0e4bbdfc6ee4b\"\n}"
+            },
+            {
+              "name": "400 Bad Request – wrong credentials",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"non_field_errors\": [\"Unable to log in with provided credentials.\"]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2 – Invitations",
+      "item": [
+        {
+          "name": "Create Invitation",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Token {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"role\": \"teacher\",\n  \"expires_at\": \"2026-05-01T00:00:00Z\",\n  \"email\": \"john@example.com\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/invitations/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invitations", ""]
+            },
+            "description": "**Admin only.**\n\nCreates a new invitation link for a `teacher` or `parent`.\n\n- `role` – required. `\"teacher\"` or `\"parent\"`\n- `expires_at` – required. ISO 8601 datetime\n- `email` – optional. Restricts the invitation to one specific email address.\n\nShare the returned `token` as:\n`GET /api/register/?token=<token>`"
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "status": "Created",
+              "code": 201,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"id\": 1,\n  \"email\": \"john@example.com\",\n  \"role\": \"teacher\",\n  \"token\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"expires_at\": \"2026-05-01T00:00:00Z\"\n}"
+            },
+            {
+              "name": "400 Bad Request – invalid role",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"role\": [\"\\\"student\\\" is not a valid choice.\"]\n}"
+            },
+            {
+              "name": "403 Forbidden – not admin",
+              "status": "Forbidden",
+              "code": 403,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"detail\": \"You do not have permission to perform this action.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List Invitations",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Token {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/invitations/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "invitations", ""]
+            },
+            "description": "**Admin only.**\n\nReturns all invitations ordered by most recent."
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "[\n  {\n    \"id\": 1,\n    \"email\": \"john@example.com\",\n    \"role\": \"teacher\",\n    \"token\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"is_used\": false,\n    \"expires_at\": \"2026-05-01T00:00:00Z\",\n    \"created_by_email\": \"admin@example.com\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3 – Registration (Public)",
+      "item": [
+        {
+          "name": "Validate Token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/register/?token=550e8400-e29b-41d4-a716-446655440000",
+              "host": ["{{base_url}}"],
+              "path": ["api", "register", ""],
+              "query": [
+                {
+                  "key": "token",
+                  "value": "550e8400-e29b-41d4-a716-446655440000",
+                  "description": "UUID token from the invitation link"
+                }
+              ]
+            },
+            "description": "**No auth required.**\n\nValidates an invitation token before showing the registration form.\n\nReturns the role assigned to this invitation and the optional email restriction."
+          },
+          "response": [
+            {
+              "name": "200 OK – valid token",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"role\": \"teacher\",\n  \"restricted_email\": \"john@example.com\",\n  \"expires_at\": \"2026-05-01T00:00:00Z\"\n}"
+            },
+            {
+              "name": "400 Bad Request – expired or used",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"error\": \"Invitation is expired or already used.\"\n}"
+            },
+            {
+              "name": "404 Not Found – invalid token",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"error\": \"Invalid token.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Submit Registration Form",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"securepassword123\",\n  \"confirm_password\": \"securepassword123\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/register/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "register", ""]
+            },
+            "description": "**No auth required.**\n\nSubmits the registration form. Creates a **pending** `RegistrationRequest` — no user account is created yet.\n\n- `token` – UUID from the invitation link\n- `name` – full name\n- `email` – must match restricted email if the invitation has one\n- `password` – minimum 8 characters\n- `confirm_password` – must match `password`\n\nRole is determined automatically from the invitation — users cannot choose it."
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "status": "Created",
+              "code": 201,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"message\": \"Registration request submitted successfully. Please wait for admin approval.\",\n  \"request_id\": 3\n}"
+            },
+            {
+              "name": "400 Bad Request – passwords don't match",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"confirm_password\": [\"Passwords do not match.\"]\n}"
+            },
+            {
+              "name": "400 Bad Request – invalid token",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"token\": [\"Invalid invitation token.\"]\n}"
+            },
+            {
+              "name": "400 Bad Request – wrong email",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"email\": [\"This invitation is restricted to a specific email address.\"]\n}"
+            },
+            {
+              "name": "400 Bad Request – email already registered",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"email\": [\"A user with this email already exists.\"]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4 – Registration Requests",
+      "item": [
+        {
+          "name": "List Registration Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Token {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/registration-requests/?status=pending",
+              "host": ["{{base_url}}"],
+              "path": ["api", "registration-requests", ""],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending",
+                  "description": "Filter by status: pending | approved | rejected  (default: pending)"
+                }
+              ]
+            },
+            "description": "**Admin only.**\n\nReturns registration requests filtered by `status`.\n\nQuery param options:\n- `pending` (default)\n- `approved`\n- `rejected`"
+          },
+          "response": [
+            {
+              "name": "200 OK – pending list",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "[\n  {\n    \"id\": 3,\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"role\": \"teacher\",\n    \"status\": \"pending\",\n    \"created_at\": \"2026-04-15T10:30:00Z\",\n    \"invitation_token\": \"550e8400-e29b-41d4-a716-446655440000\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Approve Registration Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Token {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/registration-requests/1/approve/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "registration-requests", "1", "approve", ""]
+            },
+            "description": "**Admin only.**\n\nApproves a pending registration request. This will:\n1. Create an active `User` account\n2. Create `TeacherProfile` or `ParentProfile` depending on role\n3. Mark the invitation as used\n\n**No request body needed.** Replace `1` in the URL with the actual request ID."
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"message\": \"User john@example.com approved and created successfully.\"\n}"
+            },
+            {
+              "name": "404 Not Found – not pending or wrong ID",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"error\": \"Pending registration request not found.\"\n}"
+            },
+            {
+              "name": "400 Bad Request – duplicate email",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"error\": \"A user with this email already exists.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Reject Registration Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Token {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/registration-requests/1/reject/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "registration-requests", "1", "reject", ""]
+            },
+            "description": "**Admin only.**\n\nRejects a pending registration request. The record is kept for audit purposes. No user is created.\n\n**No request body needed.** Replace `1` in the URL with the actual request ID."
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"message\": \"Registration request rejected.\"\n}"
+            },
+            {
+              "name": "404 Not Found",
+              "status": "Not Found",
+              "code": 404,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"error\": \"Pending registration request not found.\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5 – Students",
+      "item": [
+        {
+          "name": "List Students",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Token {{token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/students/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "students", ""]
+            },
+            "description": "**Parent only** (`role = \"parent\"`).\n\nReturns all students linked to the authenticated parent's profile."
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "status": "OK",
+              "code": 200,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "[\n  {\n    \"id\": 1,\n    \"name\": \"Sara Doe\",\n    \"grade\": \"Grade 3\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Ali Doe\",\n    \"grade\": \"Grade 5\"\n  }\n]"
+            },
+            {
+              "name": "403 Forbidden – not a parent",
+              "status": "Forbidden",
+              "code": 403,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"error\": \"Only parents can access this endpoint.\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Token {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sara Doe\",\n  \"grade\": \"Grade 3\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/students/",
+              "host": ["{{base_url}}"],
+              "path": ["api", "students", ""]
+            },
+            "description": "**Parent only** (`role = \"parent\"`).\n\nCreates a new student linked to the authenticated parent. The parent FK is set automatically from the logged-in user.\n\n- `name` – required. Student's full name\n- `grade` – required. e.g. `\"Grade 3\"`, `\"Year 7\"`"
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "status": "Created",
+              "code": 201,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"id\": 1,\n  \"name\": \"Sara Doe\",\n  \"grade\": \"Grade 3\"\n}"
+            },
+            {
+              "name": "400 Bad Request – missing field",
+              "status": "Bad Request",
+              "code": 400,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"name\": [\"This field is required.\"]\n}"
+            },
+            {
+              "name": "403 Forbidden – not a parent",
+              "status": "Forbidden",
+              "code": 403,
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "{\n  \"error\": \"Only parents can create students.\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

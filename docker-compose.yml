@@ -1,0 +1,78 @@
+services:
+
+  # ── PostgreSQL ────────────────────────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:       lms
+      POSTGRES_USER:     lms
+      POSTGRES_PASSWORD: lms_secret
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lms"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ── Django backend ────────────────────────────────────────────────────────
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - .:/app                        # live-reload: source edits reflect immediately
+      - media_files:/app/media        # uploaded files persist across restarts
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST:       db
+      DB_NAME:       lms
+      DB_USER:       lms
+      DB_PASSWORD:   lms_secret
+      DB_PORT:       5432
+      DEBUG:         "True"
+      ALLOWED_HOSTS: "*"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ── pgAdmin GUI ──────────────────────────────────────────────────────────
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL:    admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ── React / Vite frontend ─────────────────────────────────────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./frontend:/app               # live-reload: source edits trigger HMR
+      - /app/node_modules             # keep container's native node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_BACKEND_URL: http://backend:8000
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  media_files:
+  pgadmin_data:
