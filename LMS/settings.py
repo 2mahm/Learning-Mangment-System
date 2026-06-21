@@ -32,11 +32,11 @@ else:
     ALLOWED_HOSTS = [host.strip() for host in allowed_hosts.split(",") if host.strip()]
 
 
-CSRF_TRUSTED_ORIGINS = [
-    o.strip()
-    for o in os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000,https://dev-lacm.teleport.moarit.com').split(',')
-    if o.strip()
-]
+# CSRF_TRUSTED_ORIGINS = [
+#     o.strip()
+#     for o in os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://localhost:3000,http://127.0.0.1:3000,https://dev-lacm.teleport.moarit.com').split(',')
+#     if o.strip()
+# ]
 
 
 # Application definition
@@ -53,12 +53,14 @@ INSTALLED_APPS = [
     'accounts',
     'content',
     'attendance',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -171,7 +173,6 @@ LOGGING = {
     },
 }
 
-
 # ── Email (Gmail SMTP) ────────────────────────────────────────────────────────
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -180,3 +181,12 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER', 'noreply@example.com')
+# CORS_ALLOWED_ORIGINS = [
+#     "https://crm-ro-front-l265-bhbvmfemx-elzero2001.vercel.app",
+# ]
+CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://crm-ro-front-l265-bhbvmfemx-elzero2001.vercel.app",
+    "https://learning-mangment-system-production.up.railway.app",
+]
