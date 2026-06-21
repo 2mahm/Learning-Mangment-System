@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/auth/login/",
+      "destination": "https://learning-mangment-system-production.up.railway.app/api/login/"
+    },
+    {
       "source": "/api/:path*",
       "destination": "https://learning-mangment-system-production.up.railway.app/api/:path*"
     },
