@@ -12,15 +12,6 @@ __pycache__/
 media/
 staticfiles/
 *.log
-# ── Migrations ────────────────────────────────────────────────────────────────
-*/migrations/*.py
-!*/migrations/__init__.py
-*/migrations/*.pyc
-
-# ── Migrations ────────────────────────────────────────────────────────────────
-*/migrations/*.py
-!*/migrations/__init__.py
-*/migrations/*.pyc
 
 # ── Environment ───────────────────────────────────────────────────────────────
 .env
