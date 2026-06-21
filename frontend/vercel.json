@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://learning-mangment-system-production.up.railway.app"
+      "destination": "https://learning-mangment-system-production.up.railway.app/api/:path*"
     },
     {
       "source": "/media/:path*",
-      "destination": "https://learning-mangment-system-production.up.railway.app"
+      "destination": "https://learning-mangment-system-production.up.railway.app/media/:path*"
     }
   ]
 }
