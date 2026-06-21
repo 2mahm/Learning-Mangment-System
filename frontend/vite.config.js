@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const backendUrl = 'http://localhost:8000'
+const backendUrl = 'https://learning-mangment-system-production.up.railway.app'
 
 export default defineConfig({
   plugins: [react()],
